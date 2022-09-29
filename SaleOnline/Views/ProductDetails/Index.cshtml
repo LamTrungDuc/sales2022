@@ -1,0 +1,78 @@
+﻿@using SaleOnline.Models
+
+@{
+    ViewBag.Title = "Index";
+    // làm sao dùng được đối tượng sản phẩm vừa lấy được trong controller
+    SanPham i = ViewData["SpCanXem"] as SanPham ;
+}
+
+<!-- bradcam_area_start -->
+<div class="courses_details_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="course_text">
+                    <h3>@i.tenSP</h3>
+                    <div class="prise">
+                        <span >@string.Format("{0: #,##0 Đồng}", i.giaBan) </span>
+                        <span class="active">@i.giamGia</span>
+                        @using (Html.BeginForm("AddTo", "Home", FormMethod.Post))
+                        {
+                            <input name="maSP" type="hidden" value="@i.maSP" />
+                            <button type="submit" class="btn btn-primary">Chọn Mua</button>
+                        }
+                    </div>
+                   
+                    @*<div class="rating">
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <span>(4.5)</span>
+                    </div>*@
+                    @*<div class="hours">
+                        <div class="video">
+                            <div class="single_video">
+                                <img src="@i.hinhDD" alt="@i.tenSP" />
+                            </div>
+                            
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end -->
+<div class="courses_details_info">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-7 col-lg-7">
+                <div class="single_courses">
+                    <h3>@i.tenSP</h3>
+                    <p>@i.ndTomTat</p>
+                    <h3 class="second_title">Nội Dung</h3>
+                </div>
+                <div class="outline_courses_info">
+                 
+                    @Html.Raw(i.noiDung)
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-5">
+                <div class="courses_sidebar">
+                    <div class="video_thumb">
+                        <img src="@i.hinhDD" alt="@i.tenSP" />
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

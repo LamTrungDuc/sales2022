@@ -1,0 +1,116 @@
+﻿
+@using SaleOnline.Models
+
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<style>
+    form {
+        display: inline;
+    }
+</style>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/prettyPhoto.css" rel="stylesheet" />
+<link href="~/Content/price-range.css" rel="stylesheet" />
+<link href="~/Content/animate.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+<!-- bradcam_area_start -->
+
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>Shopping Cart </h3>
+</div>
+<!-- bradcam_area_end -->
+
+<div class="table-responsive cart_info" style="padding-top:100px ; padding-left:50px;padding-right:50px;">
+    <table class="table table-condensed">
+        <thead>
+            <tr class="cart_menu" style="color:white ; background-color:darkorange">
+                <td class="image">Sản Phẩm</td>
+                <td class="description"></td>
+                <td class="price">giá bán</td>
+                <td class="quantity">số lượng</td>
+                <td class="total">thành tiền</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (CtDonHang i in x.SanPhamDC.Values)
+                {
+                    <tr>
+                        <td class="cart_product">
+                            <a href=""><img src="@Common.getImageOfProductByID(i.maSP)" alt="" style="width:120px;height:120px"></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="">@Common.getNameOfProductByID(i.maSP)</a></h4>
+                            <p>Product ID :@i.maSP</p>
+                        </td>
+                        <td class="cart_price">
+                            <h5 style="color:darkorange">@string.Format("{0:#.##0 Vnđ}",i.giaBan)</h5>
+                        </td>
+                        <td class="cart_quantity" >
+                            <div class="cart_quantity_button" >
+                                @using (Html.BeginForm("Increase", "CardShop", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="maSP" value="@i.maSP" />
+                                    <button class="cart_quantity_up">+</button>
+                                }
+                                <input class="cart_quantity_input" type="text" name="quantity" value="@i.soLuong" autocomplete="off" size="1" disabled="disabled">
+                                @using (Html.BeginForm("Decrease", "CardShop", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="maSP" value="@i.maSP" />
+                                    <button class="cart_quantity_down">-</button>
+                                }
+                            </div>
+                        </td>
+                        <td class="cart_total">
+                            <h5 class="cart_total_price" style="color:darkorange">@x.moneyOfOneProduct(i)</h5>
+                        </td>
+                        <td class="cart_delete">
+                            @using (Html.BeginForm("RemoveItem", "CardShop", FormMethod.Post))
+                            {
+                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                <button class="cart_quantity_delete">X</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+
+
+        </tbody>
+    </table>
+    <hr />
+    <h4>Tổng giá trị - Thuế - Phí Giao Hàng -Tổng Tiền</h4>
+    <div class="col-sm-6" style="padding-bottom:100px">
+        <div class="total_area">
+            <ul>
+                <li>Tổng Trị giá <span>@x.totalOfCartShop()</span></li>
+                <li>Thuế VAT 10% <span>@((x.totalOfCartShop()*10)/100)</span></li>
+                <li>Phí giao hàng <span>Free</span></li>
+                <li>Tổng thành tiền <span>@(x.totalOfCartShop()-(x.totalOfCartShop() * 10) / 100)</span></li>
+            </ul>
+            <a class="btn btn-default update" href="">Cập nhật giỏ hàng&gt;&gt;</a>
+            <a class="btn btn-default check_out" href="@Url.Action("Index","CheckOut")">Thanh Toán </a>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.scrollUp.min.js"></script>
+<script src="~/Scripts/jquery.prettyPhoto.js"></script>
+<script src="~/Scripts/main.js"></script>

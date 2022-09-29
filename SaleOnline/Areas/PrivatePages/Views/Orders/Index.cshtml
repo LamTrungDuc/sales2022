@@ -1,0 +1,80 @@
+﻿@model SaleOnline.Models.DonHang
+    @using SaleOnline.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Đơn Hàng </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách đơn hàng mới đặt</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>SoHD</th>
+                                    <th>MaKH</th>
+                                    <th>TaiKhoan</th>
+                                    <th>Ngày Đặt </th>
+                                    <th>Ngày Giao Hàng</th>
+                                    <th>Địa Chỉ</th>
+                                    <th>Nhóm lệnh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (DonHang i in Common.getDonHang())
+                                    {
+
+                                        <tr>
+                                            <td>@i.soDH</td>
+                                            <td>@i.maKH</td>
+                                            <td>@i.taiKhoan</td>
+                                            <td>@i.ngayDat</td>
+                                            <td>@i.ngayGH</td>
+                                            <td>@i.diaChiGH</td>
+                                            <td>
+                                                <button class="btn btn-danger">Hủy đơn</button>
+                                                <button class="btn btn-default">Chi tiết</button>
+                                                <button class="btn btn-success">Kích hoạt</button>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+
+
+                             
+                            </tbody>                         
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+

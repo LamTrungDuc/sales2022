@@ -1,0 +1,36 @@
+﻿@using SaleOnline.Models
+@{
+    ViewBag.Title = "Index";
+    BaiViet x = ViewData["BaiCanXems"] as BaiViet;
+}
+
+
+<!-- bradcam_area_start -->
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>@x.tenBV</h3>
+</div>
+<!-- bradcam_area_end -->
+<!--================Blog Area =================-->
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div >
+                        <p><h2>Thông tin chi tiết về bài viết sản phẩm hạt giống </h2></p>
+                    </div>
+                    <div class="feature-img">
+                        <img class="img-fluid" src="@x.hinhDD" alt="">
+                    </div>
+                    <div class="blog_details" >
+                        
+                            @Html.Raw(x.noiDung)
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ Blog Area end =================-->

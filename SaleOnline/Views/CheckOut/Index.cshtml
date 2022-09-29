@@ -1,0 +1,163 @@
+﻿@model SaleOnline.Models.KhachHang
+@using SaleOnline.Models
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/prettyPhoto.css" rel="stylesheet" />
+<link href="~/Content/price-range.css" rel="stylesheet" />
+<link href="~/Content/animate.css" rel="stylesheet" />
+<link href="~/Content/main.css" rel="stylesheet" />
+<link href="~/Content/responsive.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+<!-- bradcam_area_start -->
+<style>
+</style>
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>Check Out </h3>
+</div>
+<!-- bradcam_area_end -->
+
+<section id="cart_items">
+    <div class="container">
+        <div class="register-req">
+            <h4>Thông Tin</h4>
+        </div><!--/register-req-->
+        <div class="shopper-informations">
+            @using (Html.BeginForm("SaveToDaTaBase", "CheckOut", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="shopper-info">
+                            <p>Thông tin khách hàng</p>
+                            <form>
+
+                                <label for="hoten">Họ Tên khách hàng</label>
+                                @Html.TextBoxFor(m => m.tenKH, new { @class = "form-control", @placeholder = "Display Name" })
+                                <table style="padding-bottom:10px">
+                                    <tr style="font-size:16px">
+                                        <td><lable class="radio-inline">@Html.RadioButtonFor(m => m.gioiTinh, new { @name = "gioiTinh" })Nam</lable></td>
+                                        <td><lable class="radio-inline">@Html.RadioButton("gioiTinh", false)Nữ</lable></td>
+                                    </tr>
+                                </table>
+
+                                <label for="ngaysinh" style="padding-top:20px">Ngày sinh</label>
+                                @Html.TextBoxFor(m => m.ngaySinh, new { @type = "date", @class = "form-control" })
+                            </form>
+                            <a href="@Url.Action("Index", "CartShop")" class="btn btn-default" style="padding-top:20px">&lt;&lt; Quay Lại</a>
+                            <button class="btn btn-success">Thanh Toán</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bill-to">
+                            <p>Thông tin liên lạc </p>
+                            <div class="form-one">
+                                <form>
+
+                                    <label for="soDt">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.soDT, new { @class = "form-control", @placeholder = "You phone number" })
+                                    <label for="mail">Email address</label>
+                                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placeholder = "email" })
+                                    <label for="addr">Địa chỉ giao hàng</label>
+                                    @Html.TextBoxFor(m => m.diaChi, new { @class = "form-control", @placeholder = "Customer" })
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="order-message">
+                            <p>Thông tin Khác</p>
+                            <div>
+                                <label for="ghiChu">Thông tin ghi chú</label>
+                                @Html.TextAreaFor(m =>m.ghiChu, new {@class="form-control", @placeholder="Thông tin cần ghi chú ",
+                                                                        @rows ="8", @style="padding-bottom:9px" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="review-payment">
+            <h2>Thông tin chi tiết về sản phẩm đã chọn mua</h2>
+        </div>
+    </div>
+    <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+            <thead>
+                <tr class="cart_menu" style="color:white ; background-color:darkorange">
+                    <td class="image">Sản Phẩm</td>
+                    <td class="description"></td>
+                    <td class="price">giá bán</td>
+                    <td class="quantity">số lượng</td>
+                    <td class="total">thành tiền</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (CtDonHang i in x.SanPhamDC.Values)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="@Common.getImageOfProductByID(i.maSP)" alt="" style="width:120px;height:120px"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">@Common.getNameOfProductByID(i.maSP)</a></h4>
+                                <p>Product ID :@i.maSP</p>
+                            </td>
+                            <td class="cart_price">
+                                <h5 style="color:darkorange">@string.Format("{0:#.##0 Vnđ}", i.giaBan)</h5>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                   
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="@i.soLuong" autocomplete="off" size="1" disabled="disabled">
+                                  
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <h5 class="cart_total_price" style="color:darkorange">@x.moneyOfOneProduct(i)</h5>
+                            </td>
+                           
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+        <hr />
+        <h4>Tổng giá trị - Thuế - Phí Giao Hàng -Tổng Tiền</h4>
+        <div class="col-sm-6" style="padding-bottom:100px">
+            <div class="total_area">
+                <ul>
+                    <li>Tổng Trị giá <span>@x.totalOfCartShop()</span></li>
+                    <li>Thuế VAT 10% <span>@((x.totalOfCartShop() * 10) / 100)</span></li>
+                    <li>Phí giao hàng <span>Free</span></li>
+                    <li>Tổng thành tiền <span>@(x.totalOfCartShop() - (x.totalOfCartShop() * 10) / 100)</span></li>
+                </ul>
+                <a class="btn btn-default update" href="">Cập nhật giỏ hàng&gt;&gt;</a>
+                <a class="btn btn-default check_out" href="@Url.Action("Index","CheckOut")">Thanh Toán </a>
+            </div>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
+
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.scrollUp.min.js"></script>
+<script src="~/Scripts/jquery.prettyPhoto.js"></script>
+<script src="~/Scripts/main.js"></script>

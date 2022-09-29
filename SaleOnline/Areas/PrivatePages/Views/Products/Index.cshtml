@@ -1,0 +1,84 @@
+﻿@using SaleOnline.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    hinhdd{
+        width:20px;
+        height:20px;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>SP Kinh Doanh </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách Sản Phẩm Kinh Doanh Của Cửa Hàng</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr style="background-color:darkorange">
+                                    
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Nội Dung TT</th>
+                                    <th>Mã Loại</th>
+                                    <th>Tài Khoản</th>
+                                    <th>giá bán</th>
+                                    <th>giảm giá</th>
+                                    <th>nhà sản xuất</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                        
+                                    foreach (SanPham i in Common.getProduct())
+                                    {
+                                      
+                                        <tr>
+                                            
+                                            <td>@i.tenSP</td>
+                                            <td>@i.ndTomTat</td>
+                                            <td>@i.maLoai</td>
+                                            <td>@i.taiKhoan</td>
+                                            <td>@i.giaBan</td>
+                                            <td>@i.giamGia</td>
+                                            <td>@i.nhaSanXuat</td>
+                                        </tr>
+
+
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+

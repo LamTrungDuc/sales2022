@@ -1,0 +1,256 @@
+﻿@using  System.Web.Optimization
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Materials/Images/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/nice-select.css">
+    <link rel="stylesheet" href="~/Content/flaticon.css">
+    <link rel="stylesheet" href="~/Content/gijgo.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/slicknav.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+     <link rel="stylesheet" href="css/responsive.css"> 
+   
+    
+
+</head>
+<body>
+
+    <!--[if lte IE 9]>
+           <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+       <![endif]-->
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="@Url.Action("Index","Home")">
+                                    <img src="~/Materials/Images/Logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation" >
+                                        <li>
+                                            @Html.ActionLink("Trang Chủ", "Index", "Home")
+                                        </li>
+                                        @*<li> @Html.ActionLink("Đăng Nhập", "Index", "Login")</li>*@
+                                        <li>
+                                            <a href="#">Sản Phẩm <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    @Html.ActionLink("Hạt Giống Hoa", "Index", "hatGiongHoa")
+
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Hạt Giống Rau", "Index", "HatGiongRau")
+
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("HG Rau MẦM", "Index", "hatGiongRauMam")
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("HG Ăn trái", "Index", "hGAnTrai")
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("HG Lương Thực", "Index", "HGCayLT")
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("HG Lâu Năm", "Index", "hGLauNam")
+                                                </li>
+                                            </ul>
+
+                                        </li>
+
+                                        <li>@Html.ActionLink("Liên Hệ", "Index", "AboutUs")</li>
+                                        <li>
+                                            <a href="#">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li>
+                                                    @Html.ActionLink("Tin Tức", "Index", "ArticlesList")
+
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+
+                                       
+                                        <li><a href="@Url.Action("Index","Login")"><i class="fa fa-lock"></i> Login</a></li>
+                                         <li><a href="@Url.Action("Index","CardShop")"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                       
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                     
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    @RenderSection("QuangCao", required: false)
+
+    @RenderBody()
+
+
+    <!-- footer -->
+    <footer class="footer footer_bg_1">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="@Url.Action("Index","Home")">
+                                    <img src="~/Materials/Images/Logo.png" alt="">
+                                </a>
+                            </div>
+                            <p>
+                                Chào mừng các bạn đến với WebSite hạt giống của chúng tôi , chúng tôi rất hân hạnh được phục vụ các bạn 
+                            </p>
+                            <div class="socail_links">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2  col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Liên hệ
+                            </h3>
+                            <ul>
+                                <li><a href="#">Email: 03trungduck29@gmail.com</a></li>
+                                <li><a href="#"> Facebook : Trung Duc</a></li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Địa Chỉ Chi Nhánh
+                            </h3>
+                            <ul>
+                                <li><a href="#">Tánh Linh - Bình Thuận</a></li>
+                                <li><a href="#">Quận 12 - TPHCM</a></li>
+                                 
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Thông tin Cần Thiết
+                            </h3>
+                            <p>
+                                LÂM TRUNG ĐỨC <br>
+                                +10 367 467 8934 <br>
+                                03TRUNGDUCK29@contact.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> LÂM TRUNG ĐỨC | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Trung Duc</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+    <!-- JS here -->
+    <script src="~/Scripts/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Scripts/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/ajax-form.js"></script>
+    <script src="~/Scripts/waypoints.min.js"></script>
+    <script src="~/Scripts/jquery.counterup.min.js"></script>
+    <script src="~/Scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/scrollIt.js"></script>
+    <script src="~/Scripts/jquery.scrollUp.min.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+    <script src="~/Scripts/nice-select.min.js"></script>
+    <script src="~/Scripts/jquery.slicknav.min.js"></script>
+    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+    <script src="~/Scripts/plugins.js"></script>
+    <script src="~/Scripts/gijgo.min.js"></script>
+    <!--contact js-->
+    <script src="~/Scripts/contact.js"></script>
+    <script src="~/Scripts/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/mail-script.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    <!-- DataTables  & Plugins -->
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/responsive.bootstrap4.min.js"></script> 
+    <script src="~/Scripts/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/buttons.bootstrap4.min.js"></script>
+    <script src="~/Scripts/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake.min.js"></script>
+    <script src="~/Scripts/vfs_fonts.js"></script>
+    <script src="~/Scripts/buttons.html5.min.js"></script>
+    <script src="~/Scripts/buttons.print.min.js"></script>
+    <script src="~/Scripts/buttons.colVis.min.js"></script>
+   
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+</body>
+</html>

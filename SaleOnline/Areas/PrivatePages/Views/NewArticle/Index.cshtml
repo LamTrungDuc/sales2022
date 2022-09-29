@@ -1,0 +1,140 @@
+﻿@model SaleOnline.Models.BaiViet
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Đăng bài giới thiệu sản phẩm Cây Trồng </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">General Form</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<div class="container-fluid">
+    @using (Html.BeginForm("Index", "NewArticle", FormMethod.Post,new {enctype = "multipart/form-data"}))
+    {
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin chính</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Tên bài viết</label>
+                                @Html.TextBoxFor(m =>m.tenBV, new {@class= "form-control", @placeholder= "tên bài viết tối đa 35 ký tự" })
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nội Dung tóm tắt</label>
+                                @Html.TextAreaFor(m =>m.ndTomTat,new { @rows = "5", @class="form-control", @placeholder="Nội Dung tóm tắt không quá 100 ký tự " })
+                                 
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Ngày Đăng</label>
+                                        @Html.TextBoxFor(m =>m.ngayDang , new {@class="form-control", @disabled = "disabled" }) 
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Tài Khoản</label>
+                                        @Html.TextBoxFor(m =>m.taiKhoan , new {@class="form-control" , @disabled = "disabled" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Số Lần Đọc</label>
+                                        @Html.TextBoxFor(m => m.soLanDoc, new { @class = "form-control", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>             
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- right column -->
+            <div class="col-md-4">
+                <!-- general form elements disabled -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Hình Đại Diện</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <img src="@ViewBag.ddHinh" />
+                        <label for="exampleInputFile">File input</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="upFile" name="HinhDaiDien">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                </div>
+                <!-- /.card -->
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card card-header">
+                        <h3 class="card-title">Nội Dung bài viết</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            @Html.TextAreaFor(m =>m.noiDung, new {@class="textarea", @placeholder="place some text here", @id="ndBaiViet",
+                                                                  @style="width:100%;height:600px;font-size: 14px;" +
+                                                                    "line-height:18px;border:1px solid #dddddd;padding:10px" })
+                       
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Đăng Bài</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<script src="https://cdn.tiny.cloud/1/ibqru3mgknoddy3xjnglu9gjqejisihay7lvy6g7v6a36r1m/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#ndBaiViet',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script>

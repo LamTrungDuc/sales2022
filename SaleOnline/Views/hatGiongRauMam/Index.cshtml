@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using SaleOnline.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- bradcam_area_start -->
+<div class="bradcam_area breadcam_bg overlay2">
+    <h3>Sản Phẩm</h3>
+</div>
+<!-- bradcam_area_end -->
+<!--End of Product Details Area-->
+<!--Online Product Area Start-->
+@*@foreach (SanPham i in Common.getProductByLoaiSP(7))
+    {
+
+            }*@
+<!-- popular_courses_start -->
+<div class="popular_courses">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-100">
+                    <h3>CÁC LOẠI HẠT GIỐNG CÂY TRỒNG</h3>
+                    <p>
+                        Mời khách hàng tham khảo các loại sản phẩm bên dưới của chúng tôi , rất hân hạnh được phục vụ quý khách
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="all_courses">
+        <div class="container">
+            <div class="tab-content" id="myTabContent">
+                @{
+                    int m = 0;
+                    foreach (LoaiSP i in Common.getCategories())
+                    {
+
+                        <div class="tab-pane fade show @(m++==0?"active":"")" id="@i.maLoai" role="tabpanel" aria-labelledby="@i.maLoai-tab">
+                            <div class="row">
+                                @{
+                                    int n = 1;
+                                    foreach (SanPham j in Common.getProductByLoaiSP(9))
+                                    {
+
+                                        <div class="col-xl-4 col-lg-4 col-md-6">
+                                            <div class="single_courses">
+                                                <div class="thumb">
+                                                    <a href="@Url.Action("Index","ProductDetails",new {MaSanPham =j.maSP })">
+                                                        <img src="@j.hinhDD" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="courses_info">
+                                                    <span>@i.tenLoai</span>
+                                                    <h3>
+                                                        <a href="@Url.Action("Index","ProductDetails",new {MaSanPham =j.maSP })"> @j.tenSP </a>
+                                                    </h3>
+                                                    @using (Html.BeginForm("AddTo", "Home", FormMethod.Post))
+                                                    {
+                                                        <input name="maSP" type="hidden" value="@j.maSP" />
+                                                        <button type="submit" class="btn btn-primary">Chọn Mua</button>
+                                                    }
+                                                    <div class="star_prise d-flex justify-content-between">
+                                                        <div class="star">
+                                                            <i class="flaticon-mark-as-favorite-star"></i>
+                                                            <span>(4.5)</span>
+                                                        </div>
+                                                        <div class="prise">
+                                                            <span class="active_prise">
+                                                                @String.Format("{0:#,## Đồng}", j.giaBan)
+                                                            </span>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        if (n++ >= 6)
+                                        {
+                                            break;
+                                        }
+
+                                    }
+
+                                }
+
+                            </div>
+                        </div>
+
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- popular_courses_end-->
